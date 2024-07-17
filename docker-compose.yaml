@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  dummy-vector-agent:
+    image: timberio/vector:0.39.0-debian
+    container_name: dummy-vector-agent
+    ports:
+      - "6000:6000"
+    volumes:
+      - "./:/etc/vector/"
+      - "/var/run/docker.sock:/var/run/docker.sock"

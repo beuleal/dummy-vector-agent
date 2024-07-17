@@ -1,0 +1,21 @@
+sources:
+  dummy-python-api:
+    type: docker_logs
+    include_containers:
+      - dummy-python-api
+    docker_host: "/var/run/docker.sock"
+
+sinks:
+  stdout:
+    inputs:
+      - "dummy-python-api"
+    type: "console"
+    encoding:
+      codec: "text"
+
+  vector-aggregator:
+    inputs:
+      - "dummy-python-api"
+    type: vector
+    address: http://dummy-vector-aggregator:6010
+    version: "2"
