@@ -1,4 +1,9 @@
 version: "3.9"
+
+networks:
+  monitoring:
+    name: monitoring
+
 services:
   dummy-vector-agent:
     image: timberio/vector:0.39.0-debian
@@ -7,4 +12,6 @@ services:
       - "6000:6000"
     volumes:
       - "./:/etc/vector/"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/var/run/docker.sock:/var/run/docker.sock" # for docker_logs source
+    networks:
+      - monitoring

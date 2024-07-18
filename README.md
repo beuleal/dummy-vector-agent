@@ -21,3 +21,17 @@ Check if vector is installed:
 ```sh
 vector --version
 ```
+
+## Networking
+
+Due to containers are isolated for stability and security, the docker host does not accept connection from container to host, only host to container, unless `network: host` is added.
+More information: https://dev.to/mjnaderi/accessing-host-services-from-docker-containers-1a97
+
+## Source
+
+This example uses `docker_logs` as source. Due to that, we need to map the volume:
+
+```yaml
+volumes:
+  - "/var/run/docker.sock:/var/run/docker.sock"
+```
